@@ -39,7 +39,8 @@
 
 .dog-image {
   float:left;
-  width: 210;
+  width: 210px;
+  height: 500px;
   background-color: #e2ecf1;
   padding: 1%;
 }

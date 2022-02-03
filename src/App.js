@@ -3,13 +3,20 @@ import { Header } from './components/Header'
 import { Favorites } from './components/Favorites'
 import { Dogs } from './components/Dogs'
 import './App.css';
-import DisplayDog from './components/DisplayDog';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 class App extends Component {
 
   state = {
-    dogs: []
+    dogs: [],
+    changeState: {}
+  }
+
+  setDogs = () => {
+    // const navigate = useNavigate()
+    // navigate('/');
+    this.setState({changeState : 1})
+    console.log ("Clik")
   }
 
   addToFav = (e) => {
@@ -37,7 +44,7 @@ class App extends Component {
             </ul>
           </div>
             <Routes>
-              <Route path="/" element={<Dogs addToFav = {this.addToFav}/>}/>
+              <Route path="/" element={<Dogs addToFav = {this.addToFav} setDogs = {this.setDogs}/>}/>
               <Route path="/favorites" element={<Favorites favDogs={this.state.dogs}/>}/>
             </Routes>
         </Router>

@@ -9,11 +9,16 @@ const DisplayDog = ({addToFav}) => {
         getImage().then(dogObj => {
             let urlExt = [];
             urlExt = (dogObj.url).split(".");
-            if (urlExt[urlExt.length -1] === "mp4"){
-                console.log ("mp4")
-            }
-            setImgSrc(dogObj.url);
-            setFileSizeBytes(dogObj.fileSizeBytes);
+            if (urlExt[urlExt.length -1] === "mp4" || urlExt[urlExt.length -1] === "webm"){
+                throw new Error('mp4');
+            } 
+                setImgSrc(dogObj.url);
+                setFileSizeBytes(dogObj.fileSizeBytes);
+        }).catch(function(e) {
+            getImage().then(dogObj => {
+                setImgSrc(dogObj.url);
+                setFileSizeBytes(dogObj.fileSizeBytes);
+            });
         });
     },[]);
 
