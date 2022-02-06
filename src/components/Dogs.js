@@ -8,7 +8,7 @@ export const Dogs = (dogListProps) => {
         <div className="dogs">
             <h1>Dogs</h1>
             <div className="moreButton">
-                <button type="button" onClick={dogListProps.getNewDogs} className="btn btn-fav">Next Page</button>
+                <button className="button" type="button" onClick={dogListProps.getNewDogs} className="btn btn-fav">Next Page</button>
             </div>
             <br clear="all"></br>
             <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[0].dogObj}/>

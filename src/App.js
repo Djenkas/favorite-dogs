@@ -50,8 +50,20 @@ class App extends Component {
         <Router>
         <div className="menu">
             <ul>
-              <li> <Link to="/">Home</Link> </li>
-              <li> <Link to="/favorites">Favorites</Link> </li>
+              <li> 
+                <Link to="/">
+                  <button className="button" type="button">
+                    Home
+                  </button>
+                </Link>
+              </li>
+              <li>
+              <Link to="/favorites">
+                  <button className="button" type="button">
+                  Favorites
+                  </button>
+                </Link>
+              </li>
             </ul>
           </div>
             <Routes>
