@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import DisplayDog from './DisplayDog';
-export const Dogs = (dogProps) => {
-   
-    const [count, setCount] = useState(0);
-        let newDogs = [];
-        for (var i = 0 ; i<6 ; i++){
-            newDogs.push(<DisplayDog addToFav = {dogProps.addToFav}/>)
-        };
 
+export const Dogs = (dogListProps) => {
+   
+    let res = dogListProps.dogComponents;
     return(
         <div className="dogs">
-            {/* {showMoreDogs()} */}
             <h1>Dogs</h1>
-            {newDogs}
-            <br clear="all"></br>
             <div className="moreButton">
-                <button type="button" onClick={dogProps.setDogs} className="btn btn-fav">Next Page</button>
+                <button type="button" onClick={dogListProps.getNewDogs} className="btn btn-fav">Next Page</button>
             </div>
+            <br clear="all"></br>
+            <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[0].dogObj}/>
+            <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[1].dogObj}/>
+            <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[2].dogObj}/>
+            <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[3].dogObj}/>
+            <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[4].dogObj}/>
+            <DisplayDog addToFav = {dogListProps.addToFav} dogObj = {res[5].dogObj}/>
+
+
         </div>  
     )
 }
+

@@ -4,34 +4,45 @@ import { Favorites } from './components/Favorites'
 import { Dogs } from './components/Dogs'
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {getImage} from './services/ImageService';
+import DisplayDog from './components/DisplayDog';
 
 class App extends Component {
 
   state = {
     dogs: [],
-    changeState: {}
+    dogList: [{addToFav :this.addToFav, dogObj:{url:''}},
+            {addToFav :this.addToFav, dogObj:{url:''}},
+            {addToFav :this.addToFav, dogObj:{url:''}},
+            {addToFav :this.addToFav, dogObj:{url:''}},
+            {addToFav :this.addToFav, dogObj:{url:''}},
+            {addToFav :this.addToFav, dogObj:{url:''}}]
   }
 
-  setDogs = () => {
-    // const navigate = useNavigate()
-    // navigate('/');
-    this.setState({changeState : 1})
-    console.log ("Clik")
-  }
+  getimages = () => {
+    getImage().then(res => {console.log(res)
+      let dogs= []
+      for (var i = 0 ; i<6 ; i++){
+          dogs.push({addToFav :this.addToFav, dogObj :res[i].url})
+      };
+      this.setState({dogList:dogs});
+  })}
 
   addToFav = (e) => {
-    // console.log ("APP MAIN" , e);
     let dogs = this.state.dogs;
     dogs.push(e)
     this.setState({dogs:dogs});
-    console.log(this.state.dogs);
   }
 
+  getNewDogs = () => {
+    this.getimages();
+  }
 
-  // componentDidMount() {
-  //   let dogsArray = [];
-  //   this.setState({dogs:dogsArray})
-  // }
+  componentDidMount() {
+
+    let images = this.getimages();
+    console.log(images)
+  }
 
   render() {
     return (
@@ -44,7 +55,7 @@ class App extends Component {
             </ul>
           </div>
             <Routes>
-              <Route path="/" element={<Dogs addToFav = {this.addToFav} setDogs = {this.setDogs}/>}/>
+              <Route path="/" element={<Dogs dogComponents={this.state.dogList} getNewDogs ={this.getNewDogs} addToFav = {this.addToFav} />}/>
               <Route path="/favorites" element={<Favorites favDogs={this.state.dogs}/>}/>
             </Routes>
         </Router>
